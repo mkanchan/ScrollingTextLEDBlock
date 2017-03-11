@@ -4,7 +4,6 @@ import android.util.Log;
 
 import net.calit2.mooc.iot_db410c.db410c_gpiolib.GpioProcessor;
 import net.calit2.mooc.iot_db410c.db410c_gpiolib.GpioProcessor.Gpio;
-import java.util.Arrays;
 
 
 
@@ -53,9 +52,6 @@ class LEDProcessor {
         data = new char[numOfDevices];
         TOTAL = 0xFF;
 
-        //shutdownStatus = new char []{'0', '0', '0', '0', '0', '0', '0', '0'};
-        //scanStatus = new char[]{'0', '0', '0', '0', '0', '0', '0', '0'};
-        //intensityStatus = new char[]{'0', '0', '0', '0', '0', '0', '0', '0'};
         status = new char[][]{{'0', '0', '0', '0', '0', '0', '0', '0'},
                 {'0', '0', '0', '0', '0', '0', '0', '0'},
                 {'0', '0', '0', '0', '0', '0', '0', '0'},
@@ -98,37 +94,17 @@ class LEDProcessor {
 
     private void createInstruction(int device, char opCode, char dataCode) {
         // 'Create an instruction'
-
         data[device-1] = (char) (opCode | dataCode);
-
-
     }
 
     private void transferInstruction(char[] instruction) {
         //'Shifts in the instructions'
-        // int hex = (int) instruction[0];
-        //System.out.println("Instruction:-----------------:"+ hex + " <> " + instruction[0]);
-        Log.v(TAG,"transferInstruction:0>>"+Integer.toHexString(instruction[0]));
-        Log.v(TAG,"transferInstruction:1>>>"+Integer.toHexString(instruction[1]));
-
+        //Log.v(TAG,"transferInstruction:0>>"+Integer.toHexString(instruction[0]));
+        //Log.v(TAG,"transferInstruction:1>>>"+Integer.toHexString(instruction[1]));
         DIN.low();
         CLK.low();
         CS.low();
-/*
-        for (int j=0; j<numOfDevices; j++) {
-            char bitmask = 0x8000;
-            for (int i=0; i<16; i++) {
-                CLK.low();
-                if ((char)(instruction[j] & bitmask) == bitmask) {
-                    DIN.high();
-                } else {
-                    DIN.low();
-                }
-                CLK.high();
-                bitmask = (char) (bitmask >> 1);
-            }
-        }
-*/
+
         for (int j=numOfDevices-1; j>=0; j--) {
             char bitmask = 0x8000;
             for (int i=15; i>=0; i--) {
@@ -143,7 +119,6 @@ class LEDProcessor {
             }
         }
         CS.high();
-
     }
 
     private void setScanLimit(char dataCode, int device) {
@@ -224,9 +199,13 @@ class LEDProcessor {
         }
     }
 
-    void printNumber(char number, int device) {
+    void printNumber(char number,  boolean rotate, int device) {
         //'Displays the given number'
-        char [] num = character.setNumber(Character.getNumericValue(number));
+        char [] num;
+        if (rotate)
+            num  = character.setNumberR(Character.getNumericValue(number));
+        else
+            num  = character.setNumber(Character.getNumericValue(number));
         for (int i=0; i<8; i++) {
             setRow(i + 1, num[i], device);
         }

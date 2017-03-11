@@ -161,6 +161,32 @@ class CharacterLibrary {
         return data;
     }
 
+    char[] setNumberR(int num) {
+        // 'Database for 5x5 numbers'
+
+        if (num == 0)
+            data = new char [] {0, 0, 0B011100,	0B110010, 0B101010, 0B100110, 0B011100,	0};
+        else if (num == 1)
+            data = new char [] {0, 0, 0B100010,	0B100010, 0B111110, 0B100000, 0B100000,	0};
+        else if (num == 2)
+            data = new char [] {0, 0, 0B110010,	0B101010, 0B101010, 0B101010, 0B100100,	0};
+        else if (num == 3)
+            data = new char [] {0, 0, 0B100010,	0B100010, 0B101010, 0B101010, 0B010100,	0};
+        else if (num == 4)
+            data = new char [] {0, 0, 0B011110,	0B010000, 0B010000, 0B111110, 0B010000,	0};
+        else if (num == 5)
+            data = new char [] {0, 0, 0B101110,	0B101010, 0B101010, 0B101010, 0B010010,	0};
+        else if (num == 6)
+            data = new char [] {0, 0, 0B011100,	0B101010, 0B101010, 0B101010, 0B010010,	0};
+        else if (num == 7)
+            data = new char [] {0, 0, 0B000010,	0B000010, 0B110010, 0B001010, 0B000110,	0};
+        else if (num == 8)
+            data = new char [] {0, 0, 0B010100,	0B101010, 0B101010, 0B101010, 0B010100,	0};
+        else if (num == 9)
+            data = new char [] {0, 0, 0B100100,	0B101010, 0B101010, 0B101010, 0B010100,	0};
+        return data;
+    }
+
     char[] setDiceNumber(int num) {
         // 'Database for 5x5 Dice numbers'
 

@@ -40,7 +40,7 @@ public class DisplayLEDMessageActivity extends AppCompatActivity {
                         if (i == 0) {
                             led.printLetter(' ', true, 1);
                             if (Character.isDigit(scrollTxt.charAt(i)))
-                                led.printNumber(scrollTxt.charAt(i), 2);
+                                led.printNumber(scrollTxt.charAt(i), true, 2);
                             else
                                 led.printLetter(scrollTxt.charAt(i), true, 2);
                             try {
@@ -51,7 +51,7 @@ public class DisplayLEDMessageActivity extends AppCompatActivity {
 
                         } else if (i == scrollTxt.length()) {
                             if (Character.isDigit(scrollTxt.charAt(i-1)))
-                                led.printNumber(scrollTxt.charAt(i-1), 1);
+                                led.printNumber(scrollTxt.charAt(i-1), true, 1);
                             else
                                 led.printLetter(scrollTxt.charAt(i-1), true, 1);
                             led.printLetter(' ', true, 2);
@@ -62,11 +62,11 @@ public class DisplayLEDMessageActivity extends AppCompatActivity {
                             }
                         } else {
                             if (Character.isDigit(scrollTxt.charAt(i-1)))
-                                led.printNumber(scrollTxt.charAt(i-1), 1);
+                                led.printNumber(scrollTxt.charAt(i-1), true, 1);
                             else
                                 led.printLetter(scrollTxt.charAt(i-1), true, 1);
                             if (Character.isDigit(scrollTxt.charAt(i)))
-                                led.printNumber(scrollTxt.charAt(i), 2);
+                                led.printNumber(scrollTxt.charAt(i), true, 2);
                             else
                                 led.printLetter(scrollTxt.charAt(i), true, 2);
                             try {
